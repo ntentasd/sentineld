@@ -18,7 +18,7 @@ async fn main() {
         .parse::<u64>()
         .expect("Metric period should be a number");
 
-    let app = Router::new().route("/", get(handler));
+    let app = Router::new().route("/metrics", get(handler));
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
     let handle = axum::serve(listener, app);
